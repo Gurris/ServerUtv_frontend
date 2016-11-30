@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Frontend:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Frontend_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Frontend/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Frontend" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Mojarra-2.2.1" />
+          <element id="library" level="project" name="PrimeFaces-5.2" />
+          <element id="file-copy" path="D:/Mysql connectors/jersey-bundle-1.19.1.jar" />
+          <element id="library" level="project" name="org.codehaus.jackson:jackson-core-asl:1.9.11" />
+          <element id="library" level="project" name="org.codehaus.jackson:jackson-jaxrs:1.9.11" />
+          <element id="library" level="project" name="org.codehaus.jackson:jackson-mapper-asl:1.9.11" />
+          <element id="library" level="project" name="org.codehaus.jackson:jackson-xc:1.9.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

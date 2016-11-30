@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<body>
+<ui:composition>
+    <c:if test="#{login.loggedIn == true}">
+
+        <h:form rendered="#{login.loggedIn == true}">
+            <p style="padding-right: 30px; float:left; display: inline; width: auto;">Welcome #{login.username}!</p>
+            <h:commandLink style="padding-right: 30px; float:left; display: inline; width: auto;" value="Logout" action="#{login.logout}" />
+            <h:commandLink style="padding-right: 30px; float:left; display: inline; width: auto;" value="read messages" action="/restricted/messages/ReadMessage.xhtml" />
+            <h:commandLink style="padding-right: 30px; float:left; display: inline; width: auto;" value="send message" action="/restricted/messages/SendMessage.xhtml" />
+            <h:commandLink style="padding-right: 30px; float:left; display: inline; width: auto;" value="List users" action="/restricted/users/ListUsers" />
+            <h:commandLink style="padding-right: 30px; float:left; display: inline; width: auto;" value="Your home page" action="/restricted/users/UserHomePage.xhtml" />
+
+        </h:form>
+
+    </c:if>
+    <c:if test="#{login.loggedIn == false}">
+
+        <h:link style="padding-right: 30px; float:left; display: inline; width: auto;" value="Login" outcome="login" rendered="#{login.loggedIn == false}" />
+        <h:link style="padding-right: 30px; float:left; display: inline; width: auto;" value="Register" outcome="register" rendered="#{login.loggedIn == false}" />
+
+    </c:if>
+
+    <br/><br/><br/>
+
+    <hr></hr>
+
+
+</ui:composition>
+</body>
+</html>

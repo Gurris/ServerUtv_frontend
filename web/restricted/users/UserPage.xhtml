@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+    <ui:composition template="/common/commonLayout.xhtml">
+
+        <ui:define name="content">
+
+            <h1>USER PAGE</h1>
+            <h:outputText value="#{userPage.init(user.redirectValue)}"/>
+
+            <h:outputText value="Username: #{userPage.user.username}"></h:outputText>
+            <br></br><br></br>
+
+            <h:outputText value="Firstname: #{userPage.user.firstname}"></h:outputText>
+            <br></br><br></br>
+
+            <h:outputText value="Lastname: #{userPage.user.lastname}"></h:outputText>
+            <br></br><br></br>
+
+            <h:outputText value="Users log: "></h:outputText>
+            <br></br>
+            <h:dataTable id="logList" value="#{userPage.logs}" var="logList" border="1">
+                <h:column>#{logList.fromUser}</h:column>
+                <h:column>#{logList.log_message}</h:column>
+            </h:dataTable>
+            <br></br><br></br>
+
+
+            <br></br><br></br>
+
+            <h:form>
+                <h:outputText value="Write to users log" />
+                <br></br><br></br>
+                <h:inputTextarea id="logField" required="true" requiredMessage="Required" value="#{userPage.submitMsg}"></h:inputTextarea>
+                <h:message for="logField"></h:message>
+                <br></br><br></br>
+                <h:commandButton action="#{userPage.submitLogMsg}" value="Submit"></h:commandButton>
+            </h:form>
+
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>

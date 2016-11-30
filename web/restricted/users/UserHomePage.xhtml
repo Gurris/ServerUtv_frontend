@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+    <ui:composition template="/common/commonLayout.xhtml">
+
+        <ui:define name="content">
+
+            <h1>Home page</h1>
+
+            <h:outputText value="Name: #{homePage.username}" />
+            <br></br><br></br>
+
+            <h:outputText value="your log: " />
+            <br></br>
+
+            <h:dataTable id="logList" value="#{homePage.logs}" var="logList" border="1">
+                <h:column>#{logList.fromUser}</h:column>
+                <h:column>#{logList.log_message}</h:column>
+            </h:dataTable>
+
+            <br></br><br></br>
+
+            <h:form>
+                <h:outputText value="Write to log" />
+                <br></br><br></br>
+                <h:inputTextarea id="logField" required="true" requiredMessage="Required" value="#{homePage.submitMsg}"></h:inputTextarea>
+                <h:message for="logField"></h:message>
+                <br></br><br></br>
+                <h:commandButton action="#{homePage.submitLogMsg}" value="Submit"></h:commandButton>
+            </h:form>
+
+
+        </ui:define>
+
+    </ui:composition>
+</h:body>
+</html>
