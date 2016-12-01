@@ -1,11 +1,12 @@
 package beans;
 
-import BO.Log;
 import BO.User;
-import BO.Message;
+import BO.User_handler;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
 
 /**
  * Created by Gurris on 2016-11-03.
@@ -38,8 +39,7 @@ public class userBean {
     }
 
     public userBean() {
-        //users = new ListDataModel<>(User_handler.getAllUsers());
-
+        users = new ListDataModel<>(User_handler.getAllUsers());
     }
 
     public String getUserName() {

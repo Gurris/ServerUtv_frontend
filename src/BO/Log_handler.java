@@ -7,9 +7,9 @@ import java.util.ArrayList;
  * Created by Gurris on 2016-11-12.
  */
 public class Log_handler {
-/*
-    public static ArrayList<Log> getUserLogFromUId(int userId){
 
+    public static ArrayList<Log> getUserLogFromUId(int userId){
+        /*
         ArrayList<LogEntity> queryResult = UserLogDB.getUsersLogFromUId(userId);
         ArrayList<Log> convertedResult = new ArrayList<>();
 
@@ -22,15 +22,19 @@ public class Log_handler {
             convertedResult.add(msg);
         }
         return convertedResult;
+        */
+        return null;
     }
 
     public static void addToUserLog(int toUser, int fromUser, String log_message){
+        /*
         UserEntity from = UserDB.findById(toUser);
         UserEntity to = UserDB.findById(fromUser);
         if(from == null || to == null)
             return;
 
         UserLogDB.addToUserLog(from, to, log_message);
+        */
     }
-*/
+
 }

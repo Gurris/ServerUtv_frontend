@@ -1,8 +1,10 @@
 package beans;
 
 import BO.Log;
+import BO.Log_handler;
 import BO.User;
-import BO.Message;
+import BO.User_handler;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -36,7 +38,7 @@ public class userHomePageBean {
 
     public String getUsername() {
 
-        //user = User_handler.findUserByName(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(LoginBean.AUTHENTICATION).toString());
+        user = User_handler.findUserByName(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(LoginBean.AUTHENTICATION).toString());
         setId(user.getId());
         setUsername(user.getUsername());
         if(user.getLog() != null){
@@ -52,7 +54,9 @@ public class userHomePageBean {
     }
 
     public ArrayList<Log> getLogs() {
-
+        ArrayList<Log> log = Log_handler.getUserLogFromUId(user.getId());
+        if(log != null)
+            setLogs(log);
         return logs;
     }
 
@@ -60,6 +64,12 @@ public class userHomePageBean {
         this.logs = logs;
     }
     public void submitLogMsg(){
-
+        if(submitMsg != null){
+            if(submitMsg.length() <= 254){
+                Log_handler.addToUserLog(user.getId(), user.getId(), submitMsg);
+            }else{
+                System.out.println("Message is too long!");
+            }
+        }
     }
 }

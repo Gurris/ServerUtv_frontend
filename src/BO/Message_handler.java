@@ -8,8 +8,8 @@ import java.util.ArrayList;
  * Created by Gustaf on 2016-11-25.
  */
 public class Message_handler {
-/*
     public static void sendMessageToId(Message msg){
+        /*
         MessagesEntity dbMsg = new MessagesEntity();
         dbMsg.setId(msg.getId());
         UserEntity usr1 = new UserEntity();
@@ -31,9 +31,12 @@ public class Message_handler {
         dbMsg.setMessage(msg.getMessage());
 
         MessageDB.sendMessageToUser(dbMsg);
+        */
+
     }
 
     public static ArrayList<Message> getMessagesForUser(String username){
+        /*
         User usrFromId = User_handler.findUserByName(username);
 
         if(usrFromId != null){
@@ -61,6 +64,8 @@ public class Message_handler {
         }
 
         return null;
+        */
+        return null;
     }
-*/
+
 }

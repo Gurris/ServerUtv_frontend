@@ -1,8 +1,8 @@
 package beans;
 
-import BO.Log;
-import BO.User;
 import BO.Message;
+import BO.Message_handler;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -19,7 +19,7 @@ public class ReadMessageBean {
 
     public ArrayList<Message> getMessages() {
         String user = FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userKey").toString();
-        //setMessages(Message_handler.getMessagesForUser(user));
+        setMessages(Message_handler.getMessagesForUser(user));
 
         return messages;
     }

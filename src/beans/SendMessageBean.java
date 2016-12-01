@@ -1,8 +1,9 @@
 package beans;
 
-import BO.Log;
-import BO.User;
 import BO.Message;
+import BO.Message_handler;
+import BO.User;
+import BO.User_handler;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -23,7 +24,15 @@ public class SendMessageBean {
     private ArrayList<User> dropdown = new ArrayList<>();
 
     public List<User> getUsers(){
-        return null;
+        dropdown.clear();
+        List<User> usrList = User_handler.getAllUsers();
+        for(int i=0; i<usrList.size(); i++){
+            if(!usrList.get(i).getUsername().equals(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userKey").toString())) {
+                //Do not add yourself.
+                dropdown.add(usrList.get(i));
+            }
+        }
+        return dropdown;
     }
 
     public int getToUser() {
@@ -51,7 +60,12 @@ public class SendMessageBean {
     }
 
     public void sendMessage(){
+        Message msg = new Message();
+        msg.setMessage(messageToSend);
+        msg.setFromUser(User_handler.findUserByName(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("userKey").toString()));
+        msg.setToUser(User_handler.getUserById(toUser));
 
+        Message_handler.sendMessageToId(msg);
     }
 
 }

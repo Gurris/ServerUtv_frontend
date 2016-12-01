@@ -23,7 +23,7 @@ public class User_handler {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client c = Client.create(clientConfig);
 
-        WebResource webResource = c.resource("http://localhost:8080" + "/hello/get/1");
+        WebResource webResource = c.resource("http://localhost:8080" + "/user/getFromUsername/"+username);
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
         User usr = response.getEntity(new GenericType<User>(){});
 
@@ -33,92 +33,85 @@ public class User_handler {
             return true;
         else
             return false;
+
     }
-/*
+
     public static User findUserByName(String username){ // one user
-        System.out.println("handler");
-        UserEntity queryResult = UserDB.findByName(username);
-        User user = new User();
+        ClientConfig clientConfig = new DefaultClientConfig();
+        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+        Client c = Client.create(clientConfig);
 
-        user.setId(queryResult.getId());
-        user.setUsername(queryResult.getUsername());
-        user.setFirstname(queryResult.getFirstname());
-        user.setLastname(queryResult.getLastname());
+        WebResource webResource = c.resource("http://localhost:8080" + "/user/getFromUsername/" + username);
+        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+        User usr = response.getEntity(new GenericType<User>(){});
 
-        if(queryResult != null){
-            ArrayList<Log> logs = Log_handler.getUserLogFromUId(user.getId());
+        if(usr != null){
+            ArrayList<Log> logs = Log_handler.getUserLogFromUId(usr.getId());
             if(!logs.isEmpty())
-                user.setLog(logs);
+                usr.setLog(logs);
 
         }else{
-            user.setLog(null);
+            usr.setLog(null);
         }
-        return user;
+        System.out.println("-----------");
+        for(int i=0; i<usr.getLog().size(); i++){
+            System.out.println(usr.getLog().get(i).getLog_message());
+        }
+        return usr;
+
     }
 
     public static List<User> getAllUsers(){
-        System.out.println("GET ALL USERS");
-        List<UserEntity> users = UserDB.getAll();
-        List<User> newList = new ArrayList<>();
-        for(int i=0; i<users.size(); i++){
-            User tmp = new User();
-            tmp.setId(users.get(i).getId());
-            tmp.setFirstname(users.get(i).getFirstname());
-            tmp.setLastname(users.get(i).getLastname());
-            tmp.setUsername(users.get(i).getUsername());
+        ClientConfig clientConfig = new DefaultClientConfig();
+        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+        Client c = Client.create(clientConfig);
 
-            List<Log> uLog = Log_handler.getUserLogFromUId(users.get(i).getId());
-            newList.add(tmp);
-        }
-        return newList;
+        WebResource webResource = c.resource("http://localhost:8080" + "/user/getFromUsername");
+        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+        List<User> users = response.getEntity(new GenericType<List<User>>(){});
+
+
+        return users;
     }
 
     public static List<User> findUsersByName(String username){ // all users with name like username
-        List<UserEntity> users = UserDB.findUsersByUsername(username);
-        List<User> newList = new ArrayList<>();
-        for(int i=0; i<users.size(); i++){
-            User tmp = new User();
-            tmp.setId(users.get(i).getId());
-            tmp.setFirstname(users.get(i).getFirstname());
-            tmp.setLastname(users.get(i).getLastname());
-            tmp.setUsername(users.get(i).getUsername());
-            newList.add(tmp);
-        }
-        return newList;
+        ClientConfig clientConfig = new DefaultClientConfig();
+        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+        Client c = Client.create(clientConfig);
+
+        WebResource webResource = c.resource("http://localhost:8080" + "/user/findUsersByName/" + username);
+        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+        List<User> users = response.getEntity(new GenericType<List<User>>(){});
+
+        return users;
     }
 
     public static User getUserById(int id){
+        ClientConfig clientConfig = new DefaultClientConfig();
+        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+        Client c = Client.create(clientConfig);
 
-        UserEntity dbUser = UserDB.findById(id);
-        if(dbUser == null)
-            return null;
+        WebResource webResource = c.resource("http://localhost:8080" + "/user/getUserById/" + id);
+        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
+        User users = response.getEntity(new GenericType<User>(){});
 
-        User user = new User();
-        user.setFirstname(dbUser.getFirstname());
-        user.setLastname(dbUser.getLastname());
-        user.setUsername(dbUser.getUsername());
-        user.setId(dbUser.getId());
-
-        ArrayList<Log> log = Log_handler.getUserLogFromUId(id);
-        if(log == null)
-            return user;
-
-        user.setLog(log);
-        return user;
+        return users;
     }
 
     public static boolean registerUser(User user){
-        if(user == null)
-            return false;
-        System.out.println("---------------------->");
-        UserEntity userEntity = new UserEntity();
-        userEntity.setFirstname(user.getFirstname());
-        userEntity.setLastname(user.getLastname());
-        userEntity.setUsername(user.getUsername());
-        userEntity.setEmail(user.getEmail());
-        userEntity.setPassword(user.getPassword());
 
-        return UserDB.registerUser(userEntity);
+        ClientConfig clientConfig = new DefaultClientConfig();
+        clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
+        Client client = Client.create(clientConfig);
+
+        WebResource webResource = client.resource("http://localhost:8080" + "/user/registerUser");
+        ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).post(ClientResponse.class, user);
+
+
+        if(response.getStatus() != 200)
+            return false;
+
+        return true;
     }
-*/
+
 }

@@ -1,22 +1,12 @@
 package beans;
 
-import BO.User;
+
 import BO.User_handler;
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.GenericType;
-import com.sun.jersey.api.client.WebResource;
-import com.sun.jersey.api.client.config.ClientConfig;
-import com.sun.jersey.api.client.config.DefaultClientConfig;
-import com.sun.jersey.api.json.JSONConfiguration;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.ws.rs.core.MediaType;
 import java.io.Serializable;
-import java.util.Collection;
-
 
 /**
  * Created by Gurris on 2016-11-10.
@@ -60,11 +50,8 @@ public class LoginBean implements Serializable{
     }
 
     public String login(){
-
-
-
         System.out.println("LOGIN!");
-       boolean valid = User_handler.login(username, password);
+        boolean valid = User_handler.login(username, password);
         if(valid){
             isLoggedIn = true;
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put(AUTHENTICATION, username);

@@ -1,10 +1,11 @@
 package beans;
 
-import BO.Log;
 import BO.User;
-import BO.Message;
+import BO.User_handler;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
 /**
  * Created by Gurris on 2016-11-16.
  */
@@ -82,7 +83,13 @@ public class registerUserBean {
         user.setEmail(email);
         user.setPassword(password1);
 
-       return null;
+        if(User_handler.registerUser(user)){
+            System.out.println("SUCCESS FROM USER HANDLER");
+            return "index.xhtml"; // change to userpage later
+        }else{
+            System.out.println("FAIL FROM USER HANDLER");
+            return "register.xhtml";
+        }
 
 
     }
