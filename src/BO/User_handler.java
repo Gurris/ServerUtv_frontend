@@ -23,7 +23,7 @@ public class User_handler {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client c = Client.create(clientConfig);
 
-        WebResource webResource = c.resource("http://localhost:8080" + "/user/getFromUsername/"+username);
+        WebResource webResource = c.resource("http://172.16.83.23:8080" + "/Backend_war/user/getFromUsername/"+username);
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
         User usr = response.getEntity(new GenericType<User>(){});
 
@@ -41,7 +41,7 @@ public class User_handler {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client c = Client.create(clientConfig);
 
-        WebResource webResource = c.resource("http://localhost:8080" + "/user/getFromUsername/" + username);
+        WebResource webResource = c.resource("http://172.16.83.23:8080" + "/Backend_war/user/getFromUsername/" + username);
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
         User usr = response.getEntity(new GenericType<User>(){});
 
@@ -53,10 +53,7 @@ public class User_handler {
         }else{
             usr.setLog(null);
         }
-        System.out.println("-----------");
-        for(int i=0; i<usr.getLog().size(); i++){
-            System.out.println(usr.getLog().get(i).getLog_message());
-        }
+
         return usr;
 
     }
@@ -66,10 +63,9 @@ public class User_handler {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client c = Client.create(clientConfig);
 
-        WebResource webResource = c.resource("http://localhost:8080" + "/user/getFromUsername");
+        WebResource webResource = c.resource("http://172.16.83.23:8080" + "/Backend_war/user/getAllUsers");
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-        List<User> users = response.getEntity(new GenericType<List<User>>(){});
-
+        ArrayList<User> users = response.getEntity(new GenericType<ArrayList<User>>(){});
 
         return users;
     }
@@ -79,9 +75,9 @@ public class User_handler {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client c = Client.create(clientConfig);
 
-        WebResource webResource = c.resource("http://localhost:8080" + "/user/findUsersByName/" + username);
+        WebResource webResource = c.resource("http://172.16.83.23:8080" + "/Backend_war/user/findUsersByName/" + username);
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
-        List<User> users = response.getEntity(new GenericType<List<User>>(){});
+        ArrayList<User> users = response.getEntity(new GenericType<ArrayList<User>>(){});
 
         return users;
     }
@@ -91,7 +87,7 @@ public class User_handler {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client c = Client.create(clientConfig);
 
-        WebResource webResource = c.resource("http://localhost:8080" + "/user/getUserById/" + id);
+        WebResource webResource = c.resource("http://172.16.83.23:8080" + "/Backend_war/user/getUserById/" + id);
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).get(ClientResponse.class);
         User users = response.getEntity(new GenericType<User>(){});
 
@@ -104,7 +100,7 @@ public class User_handler {
         clientConfig.getFeatures().put(JSONConfiguration.FEATURE_POJO_MAPPING, Boolean.TRUE);
         Client client = Client.create(clientConfig);
 
-        WebResource webResource = client.resource("http://localhost:8080" + "/user/registerUser");
+        WebResource webResource = client.resource("http://172.16.83.23:8080" + "/Backend_war/user/registerUser");
         ClientResponse response = webResource.accept(MediaType.APPLICATION_JSON).type(MediaType.APPLICATION_JSON).post(ClientResponse.class, user);
 
 

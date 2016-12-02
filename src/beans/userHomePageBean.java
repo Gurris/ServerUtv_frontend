@@ -37,14 +37,17 @@ public class userHomePageBean {
     }
 
     public String getUsername() {
-
+        System.out.println("osihefohuisefgouhisfge");
+        System.out.println(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(LoginBean.AUTHENTICATION).toString());
         user = User_handler.findUserByName(FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get(LoginBean.AUTHENTICATION).toString());
         setId(user.getId());
         setUsername(user.getUsername());
+
+        System.out.println("awdoihafhsrg");
+
         if(user.getLog() != null){
             setLogs(user.getLog());
         }
-
 
         return user.getUsername();
     }

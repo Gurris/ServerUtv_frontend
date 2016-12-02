@@ -11,12 +11,7 @@
           <element id="library" level="project" name="Mojarra-2.2.1" />
           <element id="library" level="project" name="PrimeFaces-5.2" />
           <element id="file-copy" path="D:/Mysql connectors/jersey-bundle-1.19.1.jar" />
-          <element id="library" level="project" name="org.codehaus.jackson:jackson-core-asl:1.9.11" />
-          <element id="library" level="project" name="org.codehaus.jackson:jackson-jaxrs:1.9.11" />
-          <element id="library" level="project" name="org.codehaus.jackson:jackson-mapper-asl:1.9.11" />
-          <element id="library" level="project" name="org.codehaus.jackson:jackson-xc:1.9.0" />
-          <element id="library" level="project" name="org.codehaus.jettison:jettison:1.1" />
-          <element id="library" level="project" name="org.codehaus.jackson:jackson-jaxrs:1.9.111" />
+          <element id="file-copy" path="D:/Mysql connectors/Jackson/jackson-all-1.9.9.jar" />
         </element>
       </element>
     </root>

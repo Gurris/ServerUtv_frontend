@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="Frontend:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/Frontend_war</output-path>
+    <root id="archive" name="Frontend_war.war">
+      <element id="artifact" artifact-name="Frontend:war exploded" />
+    </root>
+  </artifact>
+</component>
